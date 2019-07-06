@@ -1,0 +1,155 @@
+body
+{   
+   background-color: #d9dee3;  
+
+}
+
+.menuColumn
+{
+    top:0%;
+    left:0%;
+    position: fixed;
+    width:100px;
+    height: 100%;
+    display:inline-block;
+    background-color: #30506a;
+    box-shadow: 3px 0 10px rgba(0, 0, 0, 0.48);
+    color:white;
+}
+.menuHeader
+{
+    margin-bottom:10px;
+    width:100%;
+    height: 100px;
+    display:inline-block;
+    background-color: #30506a;
+    padding-bottom: 15px;
+}
+.menuCell
+{
+    margin-left: 5%;
+    margin-right: 5%;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    width:90%;
+    display:inline-block;
+    background-color: #30506a;
+    padding-bottom: 20px;
+}
+.controlColumn
+{
+    align-content: center;
+    top:0%;
+    left:100px;
+    position: fixed;
+    width: calc(100% - 100px);
+    height: 100%;
+    display:inline-block;
+    background-color: none;
+    color:#30506a;
+}
+.controlHeader
+{
+    width:100%;
+    height: 50px;
+    display:inline-block;
+    background-color: white;
+  
+    color:#30506a;
+}
+.controlCell
+{
+    margin:5px;
+    display:inline-block;
+    width: 350px;
+    height:400px;
+    background-color: white;
+    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.48);
+    color:#30506a;
+    border-radius: 5px;
+}
+
+.searchback
+{
+    margin-left:25px;
+    margin-top: 5px;
+    margin-right: 25px;
+    background-color: #d9dee3;
+     display:inline-block;
+    width: 200px;
+    height: 40px;
+    border-radius: 50px;
+}
+
+.searchimg
+{
+    margin-top: 5px;
+    margin-left: 5px;
+    margin-right: 5px;
+    display:inline-block;
+    background-color: none;
+    width: 30px;
+    height: 30px;
+    border-radius: 50px;
+}
+
+.searchbox
+{
+    margin-top: 5px;
+    margin-left: 5px;
+    margin-right: 10px;
+    background-color: none;
+    width: 140px;
+    height: 30px;
+    display:inline-block;
+}
+
+
+.searchboxline
+{
+    background-color: #30506a;
+    width: 140px;
+    height: 2px;
+    border-radius: 50px;
+    display:block;
+    position: absolute;
+    margin-top: 25px;
+}
+
+.tst
+{
+    width: 140px;
+    height: 20px;
+    margin-top: 5px;
+    font-size: 20px;
+    margin-bottom: 10px;
+    margin-left: -70px;
+    background-color: #d9dee3;
+    border:none;
+    position: absolute;
+    outline: none;
+}
+
+.logout
+{
+    color: white;
+    border:none;
+    border-radius: 50px;
+    outline: none;
+    width: 70px;
+    height: 40px;
+    background-color: #30506a;
+}
+
+.logoutWarper
+{
+    position: absolute;
+    display:inline-block;
+    background-color: none;
+    width: 70px;
+    height: 40px;
+    top:5px;
+    margin-left: 25px;
+    right: 5px;
+    z-index: 100;
+}
