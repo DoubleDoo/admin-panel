@@ -1,33 +1,7 @@
-.Header
+.teambox
 {
-    font-size: 0;
-    line-height: 0;
-    text-align: justify;
-    padding-top: 10px;
-}
-
-.Header:after {
-    content: '';
-    width: 100%;
-    display: inline-block;
-}
-
-.contextHeader
-{
-    font-size: 75px;
-    margin-left: 25px;
-    display: inline-block;
-    background-color: none;
-}
-
-.contextHeader:after {
-    content: '';
-    width: 100%;
-    display: inline-block;
-}
-
-.profileBox
-{
+    min-width: 100px;
+    max-width: 200px;
     margin: 10px;
     padding: 10px;
     display: inline-block;
@@ -35,11 +9,69 @@
     border-radius: 10px;
     box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.48);
 }
-
-.contextHeaderPlus
+.fotobox
 {
-    width: 70px; 
-    height: 70px;
-    display: inline-block;
-    background-color: none;
+    width: 100px;
+    height: 100px;
+    display: block;
+}
+
+.namebox
+{
+    display: block;
+    font-size: 15px;
+}
+
+.teamboxextended
+{
+    min-width: 400px;
+    margin: 10px;
+    padding: 10px;
+    display: flex;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.48);
+    width: 96%;
+    height: 100%;
+}
+.teamfotoboxextended
+{
+    width: 100px;
+    height: 100px;
+    display: block;
+}
+
+.teamnameboxextended
+{
+    display: block;
+    margin-left: 10%;
+    margin-right: 10%;
+    font-size: 30px;
+}
+.teamdateboxextended
+{
+    display: block;
+    font-size: 10px;
+    margin: 10px;
+}
+
+.imageandinfobox
+{
+    width: 100px;
+    height: 100%;
+   
+}
+
+.usersbox
+{
+    width: calc(100% - 100px);
+    height: 100%;
+    
+}
+
+.headbox
+{
+    width: 100%;
+    height: 100%;
+    
 }

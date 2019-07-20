@@ -1,5 +1,8 @@
+<link rel="stylesheet" type="text/css" href="profiles.css">
 <link rel="stylesheet" type="text/css" href="team.css">
+
 <script src="team.js"></script>
+
 
 <div class="controlHeader" align="left">
                 <div class="searchback" id="srch">
@@ -7,7 +10,7 @@
                         <img src="search.png" alt="no img" style="width: 30px; height: 30px ;border-radius:50px; ">
                     </div>
                     <div class="searchbox" align="center">
-                        <form onsubmit="search();return false;">
+                        <form onsubmit="teamsearch();return false;">
                         <input type="search" class="tst" id="srchb">
                         <input type="submit" value="Submit" style="display: none;">
                         <div class="searchboxline">
@@ -25,16 +28,16 @@
             </div>
 <div class="Header">
     <div class="contextHeaderPlus" >
-    <img src="left.png" alt="no img" style="width: 60px; height: 60px ;border-radius:50px; " onclick="back();" id="left">
+    <img src="left.png" alt="no img" style="width: 60px; height: 60px ;border-radius:50px; " onclick="teamback();" id="left">
     </div> 
     <span class="contextHeader"> Team </span>
     <div class="contextHeaderPlus" >
-    <img src="plus.png" alt="no img" style="width: 60px; height: 60px ;border-radius:50px; " id="plus">
+    <img src="plus.png" alt="no img" style="width: 60px; height: 60px ;border-radius:50px; " id="plus" onclick="teamadd();">
     </div> 
 </div>
 <hr>
 <div id="content">
 <script>
-window.onload=getinfo;
+window.onload=teamgetinfo;
 </script>
 </div>

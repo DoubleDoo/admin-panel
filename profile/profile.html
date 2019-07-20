@@ -1,7 +1,43 @@
+<link rel="stylesheet" type="text/css" href="profiles.css">
 <link rel="stylesheet" type="text/css" href="profile.css">
 <script src="profile.js"></script>
+
+<div class="controlHeader" align="left">
+                <div class="searchback" id="srch">
+                    <div class="searchimg">
+                        <img src="search.png" alt="no img" style="width: 30px; height: 30px ;border-radius:50px; ">
+                    </div>
+                    <div class="searchbox" align="center">
+                        <form onsubmit="usersearch();return false;">
+                        <input type="search" class="tst" id="srchb">
+                        <input type="submit" value="Submit" style="display: none;">
+                        <div class="searchboxline">
+                        </div>
+                        </form>
+                    </div>
+                </div>
+                
+                
+                <div class="logoutWarper">
+                    <button class="logout" onclick="logout();">
+                        logout
+                    </button>
+                </div>
+</div>
+
+<div class="Header">
+    <div class="contextHeaderPlus" >
+    <img src="left.png" alt="no img" style="width: 60px; height: 60px ;border-radius:50px; " onclick="userback();" id="left">
+    </div> 
+    <span class="contextHeader"> Profile </span>
+    <div class="contextHeaderPlus" >
+    <img src="plus.png" alt="no img" style="width: 60px; height: 60px ;border-radius:50px; " id="plus" onclick="useradd();">
+    </div> 
+</div>
+<hr>
+
+<div id="content" class="contentbox">
 <script>
 window.onload=getinfo;
 </script>
-<span class="contextHeader"> Profile </span>
-<hr>
+</div>

@@ -154,3 +154,45 @@ body
     right: 5px;
     z-index: 100;
 }
+
+.Header
+{
+     min-width: 800px;
+    font-size: 0;
+    line-height: 0;
+    text-align: justify;
+    padding-top: 10px;
+}
+
+.Header:after {
+    content: '';
+    width: 100%;
+    display: inline-block;
+}
+
+.contextHeader
+{
+    font-size: 75px;
+    margin-left: 25px;
+    display: inline-block;
+    background-color: none;
+}
+
+.contextHeader:after {
+    content: '';
+    width: 100%;
+    display: inline-block;
+}
+
+.contextHeaderPlus
+{
+    width: 70px; 
+    height: 70px;
+    display: inline-block;
+    background-color: none;
+}
+
+.contentbox
+{
+    min-width: 800px;
+}

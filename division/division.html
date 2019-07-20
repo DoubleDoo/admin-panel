@@ -1,4 +1,6 @@
 <link rel="stylesheet" type="text/css" href="division.css">
+<link rel="stylesheet" type="text/css" href="team.css">
+<link rel="stylesheet" type="text/css" href="profiles.css">
 <script src="division.js"></script>
 
 <div class="controlHeader" align="left">
@@ -7,7 +9,7 @@
                         <img src="search.png" alt="no img" style="width: 30px; height: 30px ;border-radius:50px; ">
                     </div>
                     <div class="searchbox" align="center">
-                        <form onsubmit="search();return false;">
+                        <form onsubmit="divisionsearch();return false;">
                         <input type="search" class="tst" id="srchb">
                         <input type="submit" value="Submit" style="display: none;">
                         <div class="searchboxline">
@@ -25,16 +27,16 @@
 </div>
 <div class="Header">
     <div class="contextHeaderPlus" >
-    <img src="left.png" alt="no img" style="width: 60px; height: 60px ;border-radius:50px;" onclick="back();" id="left">
+    <img src="left.png" alt="no img" style="width: 60px; height: 60px ;border-radius:50px;" onclick="divisionback();" id="left">
     </div> 
     <span class="contextHeader"> Division </span>
     <div class="contextHeaderPlus" >
-    <img src="plus.png" alt="no img" style="width: 60px; height: 60px ;border-radius:50px;" id="plus">
+    <img src="plus.png" alt="no img" style="width: 60px; height: 60px ;border-radius:50px;" id="plus" onclick="divisionadd();">
     </div> 
 </div>
 <hr>
 <div id="content">
 <script>
-window.onload=getinfo;
+window.onload=divisiongetinfo;
 </script>
 </div>

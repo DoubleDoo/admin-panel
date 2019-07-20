@@ -1,221 +1,315 @@
-let fullinfo=false;
+let fulldivisioninfo=false;
 let division=""
 let comand= "";
 let user="";
-function fill(myJson)
+
+
+
+function divisionblockgenerator(divisionjson)
+{
+    let divisionbox=document.createElement("div")
+    divisionbox.setAttribute("class","divisionbox");
+    let fotobox=document.createElement("div");
+    fotobox.setAttribute("class","fotobox");
+    fotobox.innerHTML="<img src=\""+divisionjson.foto+"\" alt=\"no img\" style=\"width: 100px; height: 100px ;\">";
+
+    let namebox=document.createElement("div");
+    namebox.setAttribute("class","namebox");
+    namebox.innerHTML=divisionjson.name;
+    
+
+    divisionbox.appendChild(fotobox);
+    divisionbox.appendChild(namebox);
+   
+    divisionbox.setAttribute("id",divisionjson.id);
+    divisionbox.setAttribute("onclick","divisiongetbyid("+divisionjson.id+");");
+    return divisionbox;
+}
+
+
+function extendeddivisionblockgenerator(divisionjson)
 {
     
+    let divisionbox=document.createElement("div")
+    divisionbox.setAttribute("class","teamboxextended");
+    
+    let fotobox=document.createElement("div");
+    fotobox.setAttribute("class","teamfotoboxextended");
+    fotobox.innerHTML="<img src=\""+divisionjson.foto+"\" alt=\"no img\" style=\"width: 100px; height: 100px ;\">";
+
+    let namebox=document.createElement("div");
+    namebox.setAttribute("class","teamnameboxextended");
+    namebox.innerHTML=divisionjson.name+" teams<hr>";
+    
+    let datebox=document.createElement("div");
+    datebox.setAttribute("class","teamdateboxextended");
+    datebox.innerHTML="Creation date: "+divisionjson.creationdate;
+    
+    let fotoandinfobox=document.createElement("div")
+    fotoandinfobox.setAttribute("class","imageandinfobox");
+    fotoandinfobox.appendChild(fotobox);
+    fotoandinfobox.appendChild(datebox);
+    
+    let usersbox=document.createElement("div")
+    usersbox.setAttribute("class","usersbox");
+    
+    let header=document.createElement("div")
+    header.setAttribute("class","headbox");
+    header.appendChild(namebox);
+    usersbox.appendChild(header); 
+    for(i=0;i<divisionjson["comandidlist"].length;i++)
+    {
+        fetch('/team/info/'+divisionjson["comandidlist"][i])
+        .then(function(response) {
+        return response.json();
+        })
+        .then(function(myJson) {
+        let blck=teamblockgenerator(myJson[0]);
+        usersbox.appendChild(blck);   
+        }); 
+    }
+    divisionbox.appendChild(fotoandinfobox);
+    divisionbox.appendChild(usersbox);
+    return divisionbox;
+}
+
+function divisionfill(myJson)
+{
     document.getElementById("content").innerHTML=""; 
     let jsn=JSON.parse(JSON.stringify(myJson));
     for(i=0;i<jsn.length;i++){
-    let contentbox=document.createElement("div")
-    contentbox.setAttribute("class","profileBox");
-    let fotobox=document.createElement("div");
-    fotobox.setAttribute("width","100");
-    fotobox.setAttribute("height","100");
-    fotobox.setAttribute("display","inline-block");
-    fotobox.innerHTML="<img src=\""+jsn[i].foto+"\" alt=\"no img\" style=\"width: 100px; height: 100px ;\">";
     
-    let namebox=document.createElement("div");
-    namebox.setAttribute("display","inline-block");
-    namebox.innerHTML="Name: "+jsn[i].name;
-    
-    let surnamebox=document.createElement("div");
-    surnamebox.setAttribute("display","inline-block");
-    surnamebox.innerHTML="Creation date: "+jsn[i].creationdate;
-
-    
-
-
-
-      
-    contentbox.appendChild(fotobox);
-    contentbox.appendChild(namebox);
-    contentbox.appendChild(surnamebox);
-    if(fullinfo)
+    if(fulldivisioninfo)
     {
         
-         for(j=0;j<jsn[i]["comandidlist"].length;j++){
-                let contentboxx=document.createElement("div")
-                contentboxx.setAttribute("class","profileBox");
-                let fotoboxx=document.createElement("div");
-                fotoboxx.setAttribute("width","100");
-                fotoboxx.setAttribute("height","100");
-                fotoboxx.setAttribute("display","inline-block");
-                fotoboxx.innerHTML="<img src=\""+jsn[i].foto+"\" alt=\"no img\" style=\"width: 100px; height: 100px ;\">";
-
-                let nameboxx=document.createElement("div");
-                nameboxx.setAttribute("display","inline-block");
-                nameboxx.innerHTML="ID: "+jsn[i].comandidlist[j];
-
-             
-                contentboxx.setAttribute("id",jsn[i].comandidlist[j]);
-                contentboxx.setAttribute("onclick","getcomandbyid("+jsn[i].comandidlist[j]+");");
-             
-             contentboxx.appendChild(fotoboxx);
-             contentboxx.appendChild(nameboxx);
-             contentbox.appendChild(contentboxx);
-         }
-    }  
-    if(!fullinfo){
-    contentbox.setAttribute("id",jsn[i].id);
-    contentbox.setAttribute("onclick","getbyid("+jsn[i].id+");");
-    }
-    document.getElementById("content").appendChild(contentbox);  
+       document.getElementById("srch").style.display="none";
+       document.getElementById("plus").style.display="none"; 
+       document.getElementById("left").style.display="inline-block";
+       document.getElementById("content").appendChild(extendeddivisionblockgenerator(jsn[i]));  
     } 
-    fullinfo=false;
+    else
+    {
+        document.getElementById("srch").style.display="inline-block";
+        document.getElementById("plus").style.display="inline-block"; 
+        document.getElementById("left").style.display="none";
+        document.getElementById("content").appendChild(divisionblockgenerator(jsn[i]));  
+    }
+    } 
+    fulldivisioninfo=false;
 }
 
-function getcomandbyid(id)
-{    
+function extendeduserblockgenerator(userjson)
+{
+    let userbox=document.createElement("div")
+    userbox.setAttribute("class","userboxextended");    
+    let imagebox=document.createElement("div")
+    imagebox.setAttribute("class","imagebox");
+    let fotobox=document.createElement("div");
+    fotobox.setAttribute("class","fotoboxextended");
+    fotobox.innerHTML="<img src=\""+userjson.foto+"\" alt=\"no img\" style=\"width: 100px; height: 100px ;\">";
+    imagebox.appendChild(fotobox);
+    
+    let infobox=document.createElement("div")
+    infobox.setAttribute("class","infobox");
+    let namebox=document.createElement("div");
+    namebox.setAttribute("class","nameboxextended");
+    namebox.innerHTML="Name: "+userjson.name;
+    
+    let surnamebox=document.createElement("div");
+    surnamebox.setAttribute("class","surnameboxextended");
+    surnamebox.innerHTML="Surname: "+userjson.surname;
+
+    let positionbox=document.createElement("div");
+    positionbox.setAttribute("class","positionboxextended");
+    positionbox.innerHTML="Position: "+userjson.position;
+
+    let numberbox=document.createElement("div");
+    numberbox.setAttribute("class","numberboxextended");
+    numberbox.innerHTML="Number: "+userjson.number;
+
+    imagebox.appendChild(fotobox);
+    infobox.appendChild(namebox);
+    infobox.appendChild(surnamebox);
+    infobox.appendChild(positionbox);
+    infobox.appendChild(numberbox);
+    userbox.appendChild(imagebox);
+    userbox.appendChild(infobox);
+    return userbox;
+}
+
+function teamblockgenerator(teamjson)
+{
+    let teambox=document.createElement("div")
+    teambox.setAttribute("class","teambox");
+    
+    let fotobox=document.createElement("div");
+    fotobox.setAttribute("class","fotobox");
+    fotobox.innerHTML="<img src=\""+teamjson.foto+"\" alt=\"no img\" style=\"width: 100px; height: 100px ;\">";
+
+    let namebox=document.createElement("div");
+    namebox.setAttribute("class","namebox");
+    namebox.innerHTML=teamjson.name;
+    
+    teambox.appendChild(fotobox);
+    teambox.appendChild(namebox);
+    
+    teambox.setAttribute("id",teamjson.id);
+    teambox.setAttribute("onclick","teamgetbyid("+teamjson.id+");");
+    return teambox;
+}
+
+function userblockgenerator(userjson)
+{
+    let userbox=document.createElement("div")
+    userbox.setAttribute("class","userbox");
+    let fotobox=document.createElement("div");
+    fotobox.setAttribute("class","fotobox");
+    fotobox.innerHTML="<img src=\""+userjson.foto+"\" alt=\"no img\" style=\"width: 100px; height: 100px ;\">";
+
+    let namebox=document.createElement("div");
+    namebox.setAttribute("class","namebox");
+    namebox.innerHTML=userjson.name;
+    
+    let surnamebox=document.createElement("div");
+    surnamebox.setAttribute("class","surnamebox");
+    surnamebox.innerHTML=userjson.surname;
+
+    let positionbox=document.createElement("div");
+    positionbox.setAttribute("class","positionbox");
+    positionbox.innerHTML=userjson.position;
+
+    userbox.appendChild(fotobox);
+    userbox.appendChild(namebox);
+    userbox.appendChild(surnamebox);
+    userbox.appendChild(positionbox);
+    
+    userbox.setAttribute("id",userjson.id);
+    userbox.setAttribute("onclick","usergetbyid("+userjson.id+");");
+    return userbox;
+}
+
+function extendedteamblockgenerator(teamjson)
+{
+    let teambox=document.createElement("div")
+    teambox.setAttribute("class","teamboxextended");
+    
+    let fotobox=document.createElement("div");
+    fotobox.setAttribute("class","teamfotoboxextended");
+    fotobox.innerHTML="<img src=\""+teamjson.foto+"\" alt=\"no img\" style=\"width: 100px; height: 100px ;\">";
+
+    let namebox=document.createElement("div");
+    namebox.setAttribute("class","teamnameboxextended");
+    namebox.innerHTML=teamjson.name+" team members <hr>";
+    
+    let datebox=document.createElement("div");
+    datebox.setAttribute("class","teamdateboxextended");
+    datebox.innerHTML="Creation date: "+teamjson.creationdate;
+    
+    let fotoandinfobox=document.createElement("div")
+    fotoandinfobox.setAttribute("class","imageandinfobox");
+    fotoandinfobox.appendChild(fotobox);
+    fotoandinfobox.appendChild(datebox);
+    
+    let usersbox=document.createElement("div")
+    usersbox.setAttribute("class","usersbox");
+    
+    let header=document.createElement("div")
+    header.setAttribute("class","headbox");
+    header.appendChild(namebox);
+    usersbox.appendChild(header); 
+    for(i=0;i<teamjson["userlist"].length;i++)
+    {
+        let positionboxteam=document.createElement("div");
+        positionboxteam.setAttribute("class","positionbox");
+        positionboxteam.innerHTML=teamjson["userlist"][i][1];
+        fetch('/profiles/info/'+teamjson["userlist"][i][0])
+        .then(function(response) {
+        return response.json();
+        })
+        .then(function(myJson) {
+        let blck=userblockgenerator(myJson[0]);
+        blck.appendChild(positionboxteam);
+        usersbox.appendChild(blck);   
+        }); 
+    }
+    teambox.appendChild(fotoandinfobox);
+    teambox.appendChild(usersbox);
+    return teambox;
+}
+
+function teamgetbyid(id)
+{
    fetch('/team/info/'+id)
   .then(function(response) {
     return response.json();
   })
   .then(function(myJson) {
-        document.getElementById("content").innerHTML=""; 
-       fullinfo=true;
-       fillcomand(myJson);
-       comand=id;
+    fullteaminfo=true;
+    teamfill(myJson);
+    comand=id;
   });  
-    
 }
 
-function fillcomand(myJson)
+
+
+function usergetbyid(id)
 {
-    
-    document.getElementById("content").innerHTML=""; 
-    let jsn=JSON.parse(JSON.stringify(myJson));
-    for(i=0;i<jsn.length;i++){
-    let contentbox=document.createElement("div")
-    contentbox.setAttribute("class","profileBox");
-    let fotobox=document.createElement("div");
-    fotobox.setAttribute("width","100");
-    fotobox.setAttribute("height","100");
-    fotobox.setAttribute("display","inline-block");
-    fotobox.innerHTML="<img src=\""+jsn[i].foto+"\" alt=\"no img\" style=\"width: 100px; height: 100px ;\">";
-    
-    let namebox=document.createElement("div");
-    namebox.setAttribute("display","inline-block");
-    namebox.innerHTML="Name: "+jsn[i].name;
-    
-    let surnamebox=document.createElement("div");
-    surnamebox.setAttribute("display","inline-block");
-    surnamebox.innerHTML="Creation date: "+jsn[i].creationdate;
-
-    
-
-
-
-      
-    contentbox.appendChild(fotobox);
-    contentbox.appendChild(namebox);
-    contentbox.appendChild(surnamebox);
-    if(fullinfo)
-    {
-        
-         for(j=0;j<jsn[i]["userlist"].length;j++){
-                let contentboxx=document.createElement("div")
-                contentboxx.setAttribute("class","profileBox");
-                let fotoboxx=document.createElement("div");
-                fotoboxx.setAttribute("width","100");
-                fotoboxx.setAttribute("height","100");
-                fotoboxx.setAttribute("display","inline-block");
-                fotoboxx.innerHTML="<img src=\""+jsn[i].foto+"\" alt=\"no img\" style=\"width: 100px; height: 100px ;\">";
-
-                let nameboxx=document.createElement("div");
-                nameboxx.setAttribute("display","inline-block");
-                nameboxx.innerHTML="ID: "+jsn[i].userlist[j][0];
-
-                let surnameboxx=document.createElement("div");
-                surnameboxx.setAttribute("display","inline-block");
-                surnameboxx.innerHTML="Role: "+jsn[i].userlist[j][1];
-             
-                contentboxx.setAttribute("id",jsn[i].userlist[j][0]);
-                contentboxx.setAttribute("onclick","getuserbyid("+jsn[i].userlist[j][0]+");");
-             
-             contentboxx.appendChild(fotoboxx);
-             contentboxx.appendChild(nameboxx);
-             contentboxx.appendChild(surnameboxx);
-             contentbox.appendChild(contentboxx);
-         }
-    }  
-    if(!fullinfo){
-    contentbox.setAttribute("id",jsn[i].id);
-    contentbox.setAttribute("onclick","getcomandbyid("+jsn[i].id+");");
-    }
-    document.getElementById("content").appendChild(contentbox);  
-    } 
-    fullinfo=false;
-}
-
-function getuserbyid(id)
-{    
-     document.getElementById("left").style.display="inline-block";
-    document.getElementById("plus").style.display="none";
    fetch('/profiles/info/'+id)
   .then(function(response) {
     return response.json();
   })
   .then(function(myJson) {
-        document.getElementById("content").innerHTML=""; 
-       filluser(myJson);
-       user=id;
+   userfill(myJson);
+     user=id;  
   });  
-    
 }
 
- function filluser(myJson)
+
+function teamfill(myJson)
 {
     document.getElementById("content").innerHTML=""; 
-    document.getElementById("plus").style.display="none";
     let jsn=JSON.parse(JSON.stringify(myJson));
     for(i=0;i<jsn.length;i++){
-    let contentbox=document.createElement("div")
-    contentbox.setAttribute("class","profileBox");
-    let fotobox=document.createElement("div");
-    fotobox.setAttribute("width","100");
-    fotobox.setAttribute("height","100");
-    fotobox.setAttribute("display","inline-block");
-    fotobox.innerHTML="<img src=\""+jsn[i].foto+"\" alt=\"no img\" style=\"width: 100px; height: 100px ;\">";
     
-    let surnamebox=document.createElement("div");
-    surnamebox.setAttribute("display","inline-block");
-    surnamebox.innerHTML="Surname: "+jsn[i].surname;
-
-    let positionbox=document.createElement("div");
-    positionbox.setAttribute("display","inline-block");
-    positionbox.innerHTML="Position: "+jsn[i].position;
-
-    let numberbox=document.createElement("div");
-    numberbox.setAttribute("display","inline-block");
-    numberbox.innerHTML="Number: "+jsn[i].number;
-
-    let namebox=document.createElement("div");
-    namebox.setAttribute("display","inline-block");
-    namebox.innerHTML="Name: "+jsn[i].name;
-
-
-      
-    contentbox.appendChild(fotobox);
-    contentbox.appendChild(namebox);
-    contentbox.appendChild(surnamebox);
-    contentbox.appendChild(positionbox);
-    contentbox.appendChild(numberbox);
-    
-    document.getElementById("content").appendChild(contentbox);  
+    if(fullteaminfo)
+    {
+        
+       document.getElementById("srch").style.display="none";
+       document.getElementById("plus").style.display="none"; 
+       document.getElementById("left").style.display="inline-block";
+       document.getElementById("content").appendChild(extendedteamblockgenerator(jsn[i]));  
     } 
+    else
+    {
+        document.getElementById("srch").style.display="inline-block";
+        document.getElementById("plus").style.display="inline-block"; 
+        document.getElementById("left").style.display="none";
+        document.getElementById("content").appendChild(teamblockgenerator(jsn[i]));  
+    }
+    } 
+    fullteaminfo=false;
 }
 
- 
 
 
-
-function getbyid(id)
+function userfill(myJson)
 {
-    document.getElementById("left").style.display="inline-block";
-    document.getElementById("plus").style.display="none";
-    
+    document.getElementById("content").innerHTML=""; 
+    let jsn=JSON.parse(JSON.stringify(myJson));
+    for(i=0;i<jsn.length;i++) 
+    {   
+            document.getElementById("left").style.display="inline-block";
+            document.getElementById("plus").style.display="none";
+            document.getElementById("srch").style.display="none";
+            document.getElementById("content").appendChild(extendeduserblockgenerator(jsn[i]));     
+    }
+    fullinfo=false;
+}
+
+
+
+function divisiongetbyid(id)
+{
    fetch('/division/info/'+id)
   .then(function(response) {
     return response.json();
@@ -224,58 +318,50 @@ function getbyid(id)
    document.getElementById("srch").style.display="none";
    document.getElementById("content").innerHTML=""; 
        document.getElementById("left").style.display="inline-block";
-    fullinfo=true;
-    fill(myJson);
+    fulldivisioninfo=true;
+    divisionfill(myJson);
     division=id;
   });  
 }
 
-function getinfo()
+function divisiongetinfo()
 {
-    document.getElementById("plus").style.display="inline-block";
-    document.getElementById("left").style.display="none";
-     document.getElementById("content").innerHTML=""; 
   fetch('/division/info')
   .then(function(response) {
     return response.json();
   })
   .then(function(myJson) {
-   fill(myJson);
+   divisionfill(myJson);
   }); 
 }
 
 
-function back()
+function divisionback()
 {
     if(user.length<1)
     {
         if(comand.length<1)
         {
-        document.getElementById("srch").style.display="inline-block";
-        document.getElementById("left").style.display="none";
-        document.getElementById("plus").style.display="inline-block";
-        search();
+        divisionsearch();
         division="";   
         }
         else
         {
         comand="";
-        getbyid(division);
+        divisiongetbyid(division);
         }
         
     }
     else 
     {
         user="";
-        getcomandbyid(comand);
+        teamgetbyid(comand);
     }
-
-    
 }
 
 
 
-function search() {
+function divisionsearch() {
     let serchbox=document.getElementById("srchb");
     let str=serchbox.value;
     fetch('/division/search',
@@ -292,8 +378,11 @@ function search() {
     return response.json();
   })
   .then(function(myJson) {
-    
-   document.getElementById("content").innerHTML=""; 
-    fill(myJson);
+    divisionfill(myJson);
   }); 
+}
+
+function divisionadd()
+{
+    alert("add model");
 }

@@ -1,3 +1,38 @@
+
+/*
+
+
+Вход в личный кабинет.
+
+
+
+Спиоск Турниов 
+
+Над таблицей турниров поиск и кнопка создать турнир
+
+При добавлении дивизиона он закрепляется за турниром, данные название количество мест.
+
+Дивизион
+
+список команд + поиск.
+
+
+Команда
+
+Показывается картинка команды.
+Показывается список игроков вместе с фотографиями и должностью (игрок, администратор, капитан)
+Тренер вноситься отдельной строкой.
+Страничка пользователя 
+
+Список команд в которых  он состоит.
+
+no members
+server js
+pasport
+logout
+
+*/
+
 const profile = require("./profile");
 const auntefication = require("./auntefication");
 const division = require("./division");
@@ -159,7 +194,6 @@ app.get("/profiles/info/:id",
 function(req,res)
 {
     var id = req.params.id;
-    console.log(id);
     fs.readFile(__dirname + "/cap/profiles.json", "utf8", 
                 function(error, data)
                 {
@@ -167,9 +201,7 @@ function(req,res)
                     let i=0;
                     while(i<jsn.length)
                     {
-                        console.log(i);
-                         console.log(jsn[i]["id"]);
-                      // (jsn[i]["id"].toString()).includes("1");
+                        
                         if(! (jsn[i]["id"].toString()).includes(req.params.id))
                            {
                             jsn.splice(i, 1);
@@ -179,7 +211,6 @@ function(req,res)
                         i++;
                         
                     }
-                    console.log(jsn);
                     res.end(JSON.stringify(jsn));
                 }
     )
@@ -192,7 +223,7 @@ function(req,res)
 app.post("/profiles/search",
 function(req,res)
 {
-     console.log(req.body);
+
      fs.readFile(__dirname + "/cap/profiles.json", "utf8", 
                 function(error, data)
                 {
@@ -202,7 +233,7 @@ function(req,res)
                     {
                         if(!((jsn[i]["name"]).includes(req.body.search)||(jsn[i]["surname"]).includes(req.body.search)||(jsn[i]["position"]).includes(req.body.search)||(jsn[i]["number"]).includes(req.body.search)))
                         {
-                            //delete jsn[i];
+                           
                             jsn.splice(i, 1);
                             i--;
                             
@@ -210,7 +241,7 @@ function(req,res)
                         i++;
                         
                     }
-                    console.log(jsn);
+    
                     res.end(JSON.stringify(jsn));
                 }
     )
@@ -232,7 +263,7 @@ function(req,res)
 app.post("/team/search",
 function(req,res)
 {
-     console.log(req.body);
+    
      fs.readFile(__dirname + "/cap/team.json", "utf8", 
                 function(error, data)
                 {
@@ -242,7 +273,6 @@ function(req,res)
                     {
                         if(!((jsn[i]["name"]).includes(req.body.search)))
                         {
-                            //delete jsn[i];
                             jsn.splice(i, 1);
                             i--;
                             
@@ -250,7 +280,6 @@ function(req,res)
                         i++;
                         
                     }
-                    console.log(jsn);
                     res.end(JSON.stringify(jsn));
                 }
     )
@@ -261,7 +290,6 @@ app.get("/team/info/:id",
 function(req,res)
 {
     var id = req.params.id;
-    console.log(id);
     fs.readFile(__dirname + "/cap/team.json", "utf8", 
                 function(error, data)
                 {
@@ -269,9 +297,6 @@ function(req,res)
                     let i=0;
                     while(i<jsn.length)
                     {
-                        console.log(i);
-                         console.log(jsn[i]["id"]);
-                      // (jsn[i]["id"].toString()).includes("1");
                         if(! (jsn[i]["id"].toString()).includes(req.params.id))
                            {
                             jsn.splice(i, 1);
@@ -281,7 +306,6 @@ function(req,res)
                         i++;
                         
                     }
-                    console.log(jsn);
                     res.end(JSON.stringify(jsn));
                 }
     )
@@ -303,7 +327,6 @@ function(req,res)
 app.post("/division/search",
 function(req,res)
 {
-     console.log(req.body);
      fs.readFile(__dirname + "/cap/division.json", "utf8", 
                 function(error, data)
                 {
@@ -313,7 +336,6 @@ function(req,res)
                     {
                         if(!((jsn[i]["name"]).includes(req.body.search)))
                         {
-                            //delete jsn[i];
                             jsn.splice(i, 1);
                             i--;
                             
@@ -321,7 +343,6 @@ function(req,res)
                         i++;
                         
                     }
-                    console.log(jsn);
                     res.end(JSON.stringify(jsn));
                 }
     )
@@ -332,7 +353,7 @@ app.get("/division/info/:id",
 function(req,res)
 {
     var id = req.params.id;
-    console.log(id);
+
     fs.readFile(__dirname + "/cap/division.json", "utf8", 
                 function(error, data)
                 {
@@ -340,9 +361,6 @@ function(req,res)
                     let i=0;
                     while(i<jsn.length)
                     {
-                        console.log(i);
-                         console.log(jsn[i]["id"]);
-                      // (jsn[i]["id"].toString()).includes("1");
                         if(! (jsn[i]["id"].toString()).includes(req.params.id))
                            {
                             jsn.splice(i, 1);
@@ -352,7 +370,7 @@ function(req,res)
                         i++;
                         
                     }
-                    console.log(jsn);
+ 
                     res.end(JSON.stringify(jsn));
                 }
     )
@@ -364,7 +382,7 @@ function(req,res)
 app.post("/tournament/search",
 function(req,res)
 {
-     console.log(req.body);
+;
      fs.readFile(__dirname + "/cap/tournament.json", "utf8", 
                 function(error, data)
                 {
@@ -374,7 +392,7 @@ function(req,res)
                     {
                         if(!((jsn[i]["name"]).includes(req.body.search)))
                         {
-                            //delete jsn[i];
+           
                             jsn.splice(i, 1);
                             i--;
                             
@@ -382,7 +400,6 @@ function(req,res)
                         i++;
                         
                     }
-                    console.log(jsn);
                     res.end(JSON.stringify(jsn));
                 }
     )
@@ -393,7 +410,6 @@ app.get("/tournament/info/:id",
 function(req,res)
 {
     var id = req.params.id;
-    console.log(id);
     fs.readFile(__dirname + "/cap/tournament.json", "utf8", 
                 function(error, data)
                 {
@@ -401,9 +417,6 @@ function(req,res)
                     let i=0;
                     while(i<jsn.length)
                     {
-                        console.log(i);
-                         console.log(jsn[i]["id"]);
-                      // (jsn[i]["id"].toString()).includes("1");
                         if(! (jsn[i]["id"].toString()).includes(req.params.id))
                            {
                             jsn.splice(i, 1);
@@ -412,8 +425,7 @@ function(req,res)
                         }
                         i++;
                         
-                    }
-                    console.log(jsn);
+					}
                     res.end(JSON.stringify(jsn));
                 }
     )

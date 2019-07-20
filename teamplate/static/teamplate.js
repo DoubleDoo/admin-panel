@@ -1,4 +1,4 @@
-function open()
+function logout()
 {
-    alert(event.target.id);
+    alert("logout");
 }

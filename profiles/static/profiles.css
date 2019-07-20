@@ -1,33 +1,7 @@
-.Header
+.userbox
 {
-    font-size: 0;
-    line-height: 0;
-    text-align: justify;
-    padding-top: 10px;
-}
-
-.Header:after {
-    content: '';
-    width: 100%;
-    display: inline-block;
-}
-
-.contextHeader
-{
-    font-size: 75px;
-    margin-left: 25px;
-    display: inline-block;
-    background-color: none;
-}
-
-.contextHeader:after {
-    content: '';
-    width: 100%;
-    display: inline-block;
-}
-
-.profileBox
-{
+    min-width: 100px;
+    max-width: 200px;
     margin: 10px;
     padding: 10px;
     display: inline-block;
@@ -35,11 +9,93 @@
     border-radius: 10px;
     box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.48);
 }
-
-.contextHeaderPlus
+.fotobox
 {
-    width: 70px; 
-    height: 70px;
-    display: inline-block;
-    background-color: none;
+    width: 100px;
+    height: 100px;
+    display: block;
+}
+
+.namebox
+{
+    display: block;
+    font-size: 15px;
+}
+.surnamebox
+{
+    display: block;
+    font-size: 15px;
+}
+.positionbox
+{
+    display: block;
+    font-size: 10px;
+}
+
+.numberbox
+{
+    display: block;
+}
+
+.userboxextended
+{
+    min-width: 400px;
+    margin: 10px;
+    padding: 10px;
+    display: flex;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.48);
+    width: 96%;
+    height: 200px;
+}
+.fotoboxextended
+{
+    width: 100px;
+    height: 100px;
+    display: flex;
+    align-self:baseline;
+    
+}
+
+.nameboxextended
+{
+    display: flex;
+    margin-left: 10%;
+    font-size: 20px;
+    margin: 20px;
+}
+.surnameboxextended
+{
+    display: flex;
+    margin-left: 10%;
+    font-size: 20px;
+    margin: 20px;
+}
+.positionboxextended
+{
+    display: flex;
+    margin-left: 10%;
+    font-size: 20px;
+    margin: 20px;
+}
+
+.numberboxextended
+{
+    display: flex;
+    margin-left: 10%;
+    font-size: 20px;
+    margin: 20px;
+}
+
+.imagebox
+{
+    width: 100px;
+    height: 100%;
+}
+
+.infobox
+{
+    width: calc(100% - 100px);
+    height: 100%;
 }

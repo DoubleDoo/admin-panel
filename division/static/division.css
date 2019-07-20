@@ -1,34 +1,7 @@
-.Header
+.divisionbox
 {
-    font-size: 0;
-    line-height: 0;
-    text-align: justify;
-    padding-top: 10px;    
-}
-
-.Header:after {
-    content: '';
-    width: 100%;
-    display: inline-block;
-    
-}
-
-.contextHeader
-{
-    font-size: 75px;
-    margin-left: 25px;
-    display: inline-block;
-    background-color: none;
-}
-
-.contextHeader:after {
-    content: '';
-    width: 100%;
-    display: inline-block;
-}
-
-.profileBox
-{
+    min-width: 100px;
+    max-width: 200px;
     margin: 10px;
     padding: 10px;
     display: inline-block;
@@ -36,11 +9,15 @@
     border-radius: 10px;
     box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.48);
 }
-
-.contextHeaderPlus
+.fotobox
 {
-    width: 70px; 
-    height: 70px;
-    display: inline-block;
-    background-color: none;
+    width: 100px;
+    height: 100px;
+    display: block;
+}
+
+.namebox
+{
+    display: block;
+    font-size: 15px;
 }
