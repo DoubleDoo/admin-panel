@@ -1,7 +1,8 @@
 body
 {   
-   background-color: #d9dee3;  
-
+    background-color: #d9dee3;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 12px;
 }
 
 .menuColumn
@@ -13,7 +14,6 @@ body
     height: 100%;
     display:inline-block;
     background-color: #30506a;
-    box-shadow: 3px 0 10px rgba(0, 0, 0, 0.48);
     color:white;
 }
 .menuHeader
@@ -71,6 +71,7 @@ body
 
 .searchback
 {
+    position: absolute;
     margin-left:25px;
     margin-top: 5px;
     margin-right: 25px;

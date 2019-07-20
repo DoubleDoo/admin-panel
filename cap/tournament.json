@@ -1,0 +1,30 @@
+[{
+	"name": "DEAD",
+	"creatorid": 0,
+	"leagueid": 18,
+	"creationdate": "10.07.2019",
+	"id": 15,
+	"divisionlist": [
+	13,
+	14
+	]
+},
+{
+	"name": "DEADFight",
+	"creatorid": 0,
+	"leagueid": 19,
+	"creationdate": "11.07.2019",
+	"id": 16,
+	"divisionlist": [
+	13
+	]
+},
+{
+	"name": "Lollers",
+	"creatorid": 0,
+	"leagueid": 10,
+	"creationdate": "12.07.2019",
+	"id": 17,
+	"divisionlist": [
+	]
+}]

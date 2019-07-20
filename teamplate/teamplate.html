@@ -1,0 +1,44 @@
+<!DOCTYPE HTML>
+<html>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="teamplate.css">
+    <script src="teamplate.js"></script>
+    <head>
+    <title>admin</title>
+    </head>
+    <body>
+        <div class="menuColumn" align="center">
+            <div class="menuHeader"  id="username">
+                <div style="width: 100px; height: 100px" align="center"><img src="profile.jpg" alt="no img" style="margin-top: 15px; width: 70px; height: 70px ;border-radius:50px; "> <b>{username}</b></div> 
+                
+            </div>
+            <div class="menuCell" onclick="location.href='/profile'" id="first">
+                <div style="width: 70px; height: 70px" align="center"><img src="icon.png" alt="no img" style="width: 50px; height: 50px ;border-radius:50px; "> <b>{first}</b></div> 
+                
+            </div>
+            <div class="menuCell" onclick="location.href='/tournament'" id="second">
+                <div style="width: 70px; height: 70px" align="center"><img src="icon.png" alt="no img" style="width: 50px; height: 50px ;border-radius:50px; "> <b>{second}</b></div> 
+                
+            </div>
+            <div class="menuCell" onclick="location.href='/division'" id="third">
+                <div style="width: 70px; height: 70px" align="center"><img src="icon.png" alt="no img" style="width: 50px; height: 50px ;border-radius:50px; "> <b>{third}</b></div> 
+                
+            </div>
+            <div class="menuCell" onclick="location.href='/team'" id="fourth">
+                <div style="width: 70px; height: 70px" align="center"><img src="icon.png" alt="no img" style="width: 50px; height: 50px ;border-radius:50px; "> <b>{fourth}</b></div> 
+                
+            </div>
+            <div class="menuCell" onclick="location.href='/profiles'" id="fives">
+                <div style="width: 70px; height: 70px" align="center"><img src="icon.png" alt="no img" style="width: 50px; height: 50px ;border-radius:50px; "> <b>{fives}</b></div> 
+                
+            </div>
+        </div>
+        <div class="controlColumn" align="center" id="contentbox">
+            
+            
+            {content}
+            
+     </div>
+    </body>
+    
+</html>

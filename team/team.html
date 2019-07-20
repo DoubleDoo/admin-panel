@@ -1,0 +1,40 @@
+<link rel="stylesheet" type="text/css" href="team.css">
+<script src="team.js"></script>
+
+<div class="controlHeader" align="left">
+                <div class="searchback" id="srch">
+                    <div class="searchimg">
+                        <img src="search.png" alt="no img" style="width: 30px; height: 30px ;border-radius:50px; ">
+                    </div>
+                    <div class="searchbox" align="center">
+                        <form onsubmit="search();return false;">
+                        <input type="search" class="tst" id="srchb">
+                        <input type="submit" value="Submit" style="display: none;">
+                        <div class="searchboxline">
+                        </div>
+                        </form>
+                    </div>
+                </div>
+                
+                
+                <div class="logoutWarper">
+                    <button class="logout" onclick="logout();">
+                        logout
+                    </button>
+                </div>
+            </div>
+<div class="Header">
+    <div class="contextHeaderPlus" >
+    <img src="left.png" alt="no img" style="width: 60px; height: 60px ;border-radius:50px; " onclick="back();" id="left">
+    </div> 
+    <span class="contextHeader"> Team </span>
+    <div class="contextHeaderPlus" >
+    <img src="plus.png" alt="no img" style="width: 60px; height: 60px ;border-radius:50px; " id="plus">
+    </div> 
+</div>
+<hr>
+<div id="content">
+<script>
+window.onload=getinfo;
+</script>
+</div>

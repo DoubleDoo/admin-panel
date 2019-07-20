@@ -1,0 +1,25 @@
+[{
+	"name": "lolsandkeks",
+	"foto": "division.png",
+	"creatorid": 0,
+	"leagueid": 18,
+	"tornamentid":15,
+	"creationdate": "19.08.2019",
+	"id": 13,
+	"comandidlist": [
+	11,
+	12
+	]
+},
+{
+	"name": "lolsorkeks",
+	"foto": "division.png",
+	"creatorid": 0,
+	"leagueid": 19,
+	"tornamentid":17,
+	"creationdate": "19.09.2019",
+	"id": 14,
+	"comandidlist": [
+	]
+}
+]

@@ -1,0 +1,22 @@
+[{
+	"name": "lols",
+	"foto": "team.jpeg",
+	"creationdate": "11.07.2019",
+	"id": 11,
+	"userlist": [
+	[1,"player"],
+	[2,"player"],
+	[4,"leader"]
+	]
+},
+{
+	"name": "keks",
+	"foto": "team.jpeg",
+	"creationdate": "12.06.2018",
+	"id": 12,
+	"userlist": [
+	[3,"leader"],
+	[5,"player"],
+	[7,"player"]
+	]
+}]
