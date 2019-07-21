@@ -5,7 +5,6 @@ let signature="testsign2019";
 let enabledtoken="none";
 
 const profile = require("./profile");
-const auntefication = require("./auntefication");
 const division = require("./division");
 const settings = require("./profiles");
 const team = require("./team");
@@ -558,3 +557,6 @@ function(req,res)
 
 app.listen(3000);
 console.log("server started on port 3000");
+console.log("login: abc");
+console.log("password: 123");
+console.log("authorization page: http://localhost:3000/autorization");

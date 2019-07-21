@@ -162,6 +162,7 @@ body
     line-height: 0;
     text-align: justify;
     padding-top: 10px;
+	height: 80px;
 }
 
 .Header:after {
@@ -195,4 +196,24 @@ body
 .contentbox
 {
     min-width: 800px;
+}
+.content
+{
+	overflow-y: auto;
+	min-width: 800px;
+	height: calc(100% - 160px);
+}
+.addbox
+{
+	width: 20px;
+	height: 20px;
+	margin-left: 5%;
+    display: inline-block;
+    background-color: white;
+    border-radius: 50%;
+}
+
+.headtxt
+{
+   display: inline-block; 
 }
