@@ -1,0 +1,50 @@
+body
+{   
+    background-color: #d9dee3;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 12px;
+}
+
+.authform
+{   
+ 	background-color: white;
+	width: 400px;
+	height: 100px;
+	display: inline-block;
+	padding: 10px;
+	top:40%;
+	border-radius: 5px;
+	box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.48);
+	margin-top: 40vh;
+}
+
+.login
+{   
+	background-color: white;
+	width: 80%;
+	display: block;
+	margin: 10px;
+	color: #30506a;
+	border-radius: 5px;
+}
+
+.password
+{   
+ 	background-color: white;
+	width: 80%;
+	display: block;
+	margin: 10px;
+	color: #30506a;
+	border-radius: 5px;
+}
+
+.subm
+{   
+	background-color: #30506a;
+	width: 80%;
+	display: block;
+	margin: 10px;
+	border-radius: 5px;
+	color: white;
+}
+

@@ -1,37 +1,8 @@
 
-/*
-
-
-Вход в личный кабинет.
-
-
-
-Спиоск Турниов 
-
-Над таблицей турниров поиск и кнопка создать турнир
-
-При добавлении дивизиона он закрепляется за турниром, данные название количество мест.
-
-Дивизион
-
-список команд + поиск.
-
-
-Команда
-
-Показывается картинка команды.
-Показывается список игроков вместе с фотографиями и должностью (игрок, администратор, капитан)
-Тренер вноситься отдельной строкой.
-Страничка пользователя 
-
-Список команд в которых  он состоит.
-
-no members
-server js
-pasport
-logout
-
-*/
+let adminlogin="abc";
+let adminpassword="123";
+let signature="testsign2019";
+let enabledtoken="none";
 
 const profile = require("./profile");
 const auntefication = require("./auntefication");
@@ -43,7 +14,9 @@ const tournament = require("./tournament");
 const http=require("http");
 const fs = require("fs");
 const express = require("express");
+const jsonwebtoken = require("jsonwebtoken");
 const bodyParser = require("body-parser");
+
 const app=express();
 
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -55,13 +28,38 @@ app.use(express.static(__dirname + '/profiles/static'));
 app.use(express.static(__dirname + '/team/static'));
 app.use(express.static(__dirname + '/teamplate/static'));
 app.use(express.static(__dirname + '/tournament/static'));
+app.use(express.static(__dirname + '/login/static'));
 app.use(express.static(__dirname + '/img'));
 app.use(express.static(__dirname + '/cap'));
 
+function generateToken(user) {
+
+    const data =  {
+      login:user.login,
+	  password:user.password
+    };
+    const expiration = '6h';
+    return jsonwebtoken.sign({ data, }, signature, { expiresIn: expiration });
+}
+
+function checktocken(req)
+{
+	var list = {},
+        rc = req.headers.cookie;
+
+    rc && rc.split(';').forEach(function( cookie ) {
+        var parts = cookie.split('=');
+        list[parts.shift().trim()] = decodeURI(parts.join('='));
+    });
+	if (JSON.parse(JSON.stringify(list)).token==enabledtoken) return true;
+	else return false;
+}
 
 app.get("/profile",
 function(req,res)
-{
+{ 
+    
+	if(checktocken(req)){
     fs.readFile(__dirname + "/teamplate/teamplate.html", "utf8", 
                 function(error, data)
                 {
@@ -75,12 +73,17 @@ function(req,res)
                     res.end(data);
                 }
     )
+	}
+	else {
+		res.status(404).send('You have not permision!');
+	}
 }
 );
 
 app.get("/tournament",
 function(req,res)
 {
+	if(checktocken(req)){
     fs.readFile(__dirname + "/teamplate/teamplate.html", "utf8", 
                 function(error, data)
                 {
@@ -94,12 +97,17 @@ function(req,res)
                     res.end(data);
                 }
     )
+		}
+	else {
+		res.status(404).send('You have not permision!');
+	}
 }
 );
 
 app.get("/division",
 function(req,res)
 {
+	if(checktocken(req)){
     fs.readFile(__dirname + "/teamplate/teamplate.html", "utf8", 
                 function(error, data)
                 {
@@ -113,12 +121,17 @@ function(req,res)
                     res.end(data);
                 }
     )
+		}
+	else {
+		res.status(404).send('You have not permision!');
+	}
 }
 );
 
 app.get("/team",
 function(req,res)
 {
+	if(checktocken(req)){
     fs.readFile(__dirname + "/teamplate/teamplate.html", "utf8", 
                 function(error, data)
                 {
@@ -132,12 +145,17 @@ function(req,res)
                     res.end(data);
                 }
     )
+		}
+	else {
+		res.status(404).send('You have not permision!');
+	}
 }
 );
 
 app.get("/profiles",
 function(req,res)
 {
+	if(checktocken(req)){
     fs.readFile(__dirname + "/teamplate/teamplate.html", "utf8", 
                 function(error, data)
                 {
@@ -151,48 +169,82 @@ function(req,res)
                     res.end(data);
                 }
     )
+		}
+	else {
+		res.status(404).send('You have not permision!');
+	}
+}
+);
+
+app.get("/autorization",
+function(req,res)
+{
+	
+    fs.readFile(__dirname + "/login/login.html", "utf8", 
+                function(error, data)
+                {
+                    res.end(data);
+                }
+    )
+	
 }
 );
 
 app.get("/profile/info",
 function(req,res)
 {
+	if(checktocken(req)){
     fs.readFile(__dirname + "/cap/profile.json", "utf8", 
                 function(error, data)
                 {
                     res.end(data);
                 }
     )
+		}
+	else {
+		res.status(404).send('You have not permision!');
+	}
 }
 );
 
 app.get("/tournament/info",
 function(req,res)
 {
+	if(checktocken(req)){
     fs.readFile(__dirname + "/cap/tournament.json", "utf8", 
                 function(error, data)
                 {
                     res.end(data);
                 }
     )
+		}
+	else {
+		res.status(404).send('You have not permision!');
+	}
 }
 );
 
 app.get("/profiles/info",
 function(req,res)
 {
+	if(checktocken(req)){
     fs.readFile(__dirname + "/cap/profiles.json", "utf8", 
                 function(error, data)
                 {
                     res.end(data);
                 }
     )
+		}
+	else {
+		res.status(404).send('You have not permision!');
+	}
 }
 );
 
 app.get("/profiles/info/:id",
 function(req,res)
 {
+	if(checktocken(req)){
     var id = req.params.id;
     fs.readFile(__dirname + "/cap/profiles.json", "utf8", 
                 function(error, data)
@@ -214,6 +266,10 @@ function(req,res)
                     res.end(JSON.stringify(jsn));
                 }
     )
+		}
+	else {
+		res.status(404).send('You have not permision!');
+	}
 }
 );
 
@@ -224,6 +280,7 @@ app.post("/profiles/search",
 function(req,res)
 {
 
+	if(checktocken(req)){
      fs.readFile(__dirname + "/cap/profiles.json", "utf8", 
                 function(error, data)
                 {
@@ -245,18 +302,27 @@ function(req,res)
                     res.end(JSON.stringify(jsn));
                 }
     )
+		}
+	else {
+		res.status(404).send('You have not permision!');
+	}
 }
 );
 
 app.get("/team/info",
 function(req,res)
 {
+	if(checktocken(req)){
     fs.readFile(__dirname + "/cap/team.json", "utf8", 
                 function(error, data)
                 {
                     res.end(data);
                 }
     )
+		}
+	else {
+		res.status(404).send('You have not permision!');
+	}
 }
 );
 
@@ -264,6 +330,7 @@ app.post("/team/search",
 function(req,res)
 {
     
+	if(checktocken(req)){
      fs.readFile(__dirname + "/cap/team.json", "utf8", 
                 function(error, data)
                 {
@@ -283,12 +350,17 @@ function(req,res)
                     res.end(JSON.stringify(jsn));
                 }
     )
+		}
+	else {
+		res.status(404).send('You have not permision!');
+	}
 }
 );
 
 app.get("/team/info/:id",
 function(req,res)
 {
+	if(checktocken(req)){
     var id = req.params.id;
     fs.readFile(__dirname + "/cap/team.json", "utf8", 
                 function(error, data)
@@ -309,24 +381,34 @@ function(req,res)
                     res.end(JSON.stringify(jsn));
                 }
     )
+		}
+	else {
+		res.status(404).send('You have not permision!');
+	}
 }
 );
 
 app.get("/division/info",
 function(req,res)
 {
+	if(checktocken(req)){
     fs.readFile(__dirname + "/cap/division.json", "utf8", 
                 function(error, data)
                 {
                     res.end(data);
                 }
     )
+		}
+	else {
+		res.status(404).send('You have not permision!');
+	}
 }
 );
 
 app.post("/division/search",
 function(req,res)
 {
+	if(checktocken(req)){
      fs.readFile(__dirname + "/cap/division.json", "utf8", 
                 function(error, data)
                 {
@@ -346,12 +428,17 @@ function(req,res)
                     res.end(JSON.stringify(jsn));
                 }
     )
+		}
+	else {
+		res.status(404).send('You have not permision!');
+	}
 }
 );
 
 app.get("/division/info/:id",
 function(req,res)
 {
+	if(checktocken(req)){
     var id = req.params.id;
 
     fs.readFile(__dirname + "/cap/division.json", "utf8", 
@@ -374,6 +461,10 @@ function(req,res)
                     res.end(JSON.stringify(jsn));
                 }
     )
+		}
+	else {
+		res.status(404).send('You have not permision!');
+	}
 }
 );
 
@@ -383,6 +474,7 @@ app.post("/tournament/search",
 function(req,res)
 {
 ;
+	if(checktocken(req)){
      fs.readFile(__dirname + "/cap/tournament.json", "utf8", 
                 function(error, data)
                 {
@@ -403,12 +495,17 @@ function(req,res)
                     res.end(JSON.stringify(jsn));
                 }
     )
+		}
+	else {
+		res.status(404).send('You have not permision!');
+	}
 }
 );
 
 app.get("/tournament/info/:id",
 function(req,res)
 {
+	if(checktocken(req)){
     var id = req.params.id;
     fs.readFile(__dirname + "/cap/tournament.json", "utf8", 
                 function(error, data)
@@ -429,9 +526,35 @@ function(req,res)
                     res.end(JSON.stringify(jsn));
                 }
     )
+		}
+	else {
+		res.status(404).send('You have not permision!');
+	}
 }
 );
 
+app.post("/autorization/login",
+function(req,res)
+{
+	if(req.body.login==adminlogin && req.body.password==adminpassword)
+	{
+		let token=generateToken(req.body);
+		enabledtoken=token;
+		res.end(JSON.stringify(token));
+	}
+	else
+	{
+		res.status(403).send('Wrong login or password!');
+	}
+	}
+);
+
+app.get("/autorization/logout",
+function(req,res)
+{
+	enabledtoken="none";
+}
+);
 
 app.listen(3000);
 console.log("server started on port 3000");
